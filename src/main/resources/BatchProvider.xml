@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+        ">
+    <dubbo:application name="hello-world-app"/>
+
+    <dubbo:registry protocol="zookeeper"
+            address="zookeeper://172.20.1.106:2181"/>
+
+    <!--<dubbo:registry protocol="zookeeper"-->
+    <!--address="zookeeper://zk1.stage.miaoqian.com:2181?backup=zk2.stage.miaoqian.com:2181,zk3.stage.miaoqian.com:2181"/>-->
+
+
+    <dubbo:protocol name="dubbo" port="20880"/>
+    <dubbo:service interface="com.scd.batch.HelloService" ref="helloService"/>
+    <bean id="helloService" class="com.scd.batch.HelloServiceImpl"/>
+</beans>
